@@ -18,6 +18,8 @@
             $_SESSION['player'] = 2;
         }//coloca o valor passado pela tela home em uma variavel global.
 
+        isset ($_SESSION ['tabuleiro']) ? $_SESSION ['tabuleiro'] : null;
+
         if ($_SESSION ['tabuleiro'] == null) {
             $_SESSION ['j'] = [array(1, 2, 3), array(4, 5, 6), array(7, 8, 9)];
         }//Cria o Array do tabuleiro e numera as casas.
@@ -62,8 +64,8 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if ($_SESSION ['player'] == 2){
             $_SESSION ['tabuleiro'] = true;
-            $x = $_POST['X']; //pega o valor digitado por 'X' no formulário.
-            $o = $_POST['O']; //pega o valor digitado por 'O' no formulário.
+            $x = isset ($_POST['X']) ? $_POST['X'] : null; //pega o valor digitado por 'X' no formulário.
+            $o = isset ($_POST['O']) ? $_POST['O'] : null; //pega o valor digitado por 'O' no formulário.
 
             if ($x == 1){
                 $_SESSION['j'][0][0] = "X";
@@ -122,7 +124,6 @@
                 $_SESSION['j'][2][2] = "O";
                 $_SESSION['deu_velha'] ++;
             }//jogadas de 'O'.
-            echo $_SESSION['deu_velha'];
         }//jogadas two players
     ?>
 
