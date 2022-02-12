@@ -12,8 +12,8 @@
     <h1>Jogo da velha</h1>
     <form class="center" method="post" action="main.php">
         <label>
-            <input type="radio" name="player" value="1"> Single Player </br>
-            <input type="radio" name="player" value="2" checked> Two Player's </br></br>
+            <input type="radio" name="player" value="1" checked> Single Player </br>
+            <input type="radio" name="player" value="2"> Two Player's </br></br>
             <input type="submit" value="Bora Jogar!">
         </label>
     </form>
