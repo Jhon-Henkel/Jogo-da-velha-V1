@@ -55,6 +55,7 @@ function jogada_invalida ($ia): void{
 }//javascript de jogada inválida.
 
 function jogada_ia ($ia){
+    $r = rand(1,4);
     if ($ia == 1){
         if ($_SESSION['j'][0][0] == '<span class="o">O</span>' && $_SESSION['j'][0][1] == '<span class="o">O</span>' && $_SESSION['j'][0][2] == 3 ||
             $_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == 3){
@@ -200,22 +201,22 @@ function jogada_ia ($ia){
             $_SESSION['deu_velha']++;
             $_SESSION['x/o'] = 1;
             $ia = 3;
-        }elseif ($_SESSION['j'][2][2] == 9) {
+        }elseif ($r == 1 && $_SESSION['j'][2][2] == 9) {
             $_SESSION['j'][2][2] = '<span class="o">O</span>';
             $_SESSION['deu_velha']++;
             $_SESSION['x/o'] = 1;
             $ia = 3;
-        }elseif ($_SESSION['j'][0][2] == 3) {
+        }elseif ($r == 2 && $_SESSION['j'][0][2] == 3) {
             $_SESSION['j'][0][2] = '<span class="o">O</span>';
             $_SESSION['deu_velha']++;
             $_SESSION['x/o'] = 1;
             $ia = 3;
-        }elseif ($_SESSION['j'][0][0] == 1) {
+        }elseif ($r == 3 && $_SESSION['j'][0][0] == 1) {
             $_SESSION['j'][0][0] = '<span class="o">O</span>';
             $_SESSION['deu_velha']++;
             $_SESSION['x/o'] = 1;
             $ia = 3;
-        }elseif ($_SESSION['j'][2][0] == 7) {
+        }elseif ($r == 4 && $_SESSION['j'][2][0] == 7) {
             $_SESSION['j'][2][0] = '<span class="o">O</span>';
             $_SESSION['deu_velha']++;
             $_SESSION['x/o'] = 1;
