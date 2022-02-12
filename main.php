@@ -10,7 +10,7 @@
 <body>
 <div>
     <?php
-        $player=$_POST["player"];//lê o valor informado na tela home.php
+        $player = $_POST["player"] ?? null;//lê o valor informado na tela home.php
 
         if ($player == 1){
             $_SESSION['player'] = 1;
@@ -18,13 +18,13 @@
             $_SESSION['player'] = 2;
         }//coloca o valor passado pela tela home em uma variavel global.
 
-        isset ($_SESSION ['tabuleiro']) ? $_SESSION ['tabuleiro'] : null;
+        $_SESSION ['tabuleiro'] = $_SESSION ['tabuleiro'] ?? null;
 
         if ($_SESSION ['tabuleiro'] == null) {
             $_SESSION ['j'] = [array(1, 2, 3), array(4, 5, 6), array(7, 8, 9)];
         }//Cria o Array do tabuleiro e numera as casas.
 
-        function tabuleiro (): void{
+        function tabuleiro (): void {
             echo "<h1>";
             echo $_SESSION['j'][0][0] . " | " . $_SESSION['j'][0][1] . " | " . $_SESSION['j'][0][2];
             echo "<br>-----------</br>";
@@ -34,8 +34,7 @@
             echo "</h1>";
         }//função para exibir o tabuleiro com as posições.
 
-        function fim_jogo (): void
-        {
+        function fim_jogo (): void {
             if (($_SESSION['j'][0][0] == "X" && $_SESSION['j'][0][1] == "X" && $_SESSION['j'][0][2] == "X")
                 || ($_SESSION['j'][1][0] == "X" && $_SESSION['j'][1][1] == "X" && $_SESSION['j'][1][2] == "X")
                 || ($_SESSION['j'][2][0] == "X" && $_SESSION['j'][2][1] == "X" && $_SESSION['j'][2][2] == "X")
@@ -64,12 +63,13 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if ($_SESSION ['player'] == 2){
             $_SESSION ['tabuleiro'] = true;
-            $x = isset ($_POST['X']) ? $_POST['X'] : null; //pega o valor digitado por 'X' no formulário.
-            $o = isset ($_POST['O']) ? $_POST['O'] : null; //pega o valor digitado por 'O' no formulário.
+            $x = $_POST['X'] ?? null; //pega o valor digitado por 'X' no formulário.
+            $o = $_POST['O'] ?? null; //pega o valor digitado por 'O' no formulário.
+            $_SESSION['deu_velha'] = $_SESSION['deu_velha'] ?? null;
 
-            if ($x == 1){
+            if ($x == 1 && $_SESSION['j'][0][0] == 1){
                 $_SESSION['j'][0][0] = "X";
-                $_SESSION['deu_velha'] ++;
+                $_SESSION['deu_velha']++;
             }elseif ($x == 2){
                 $_SESSION['j'][0][1] = "X";
                 $_SESSION['deu_velha'] ++;
@@ -127,7 +127,6 @@
         }//jogadas two players
     ?>
 
-
     <form class="center" method="post" action="main.php">
         <label>
             Informe o local para 'X':<br>
@@ -147,7 +146,7 @@
     <?php
        tabuleiro ();
        fim_jogo ();
-    ?><!--Mostra o tabuleiro-->
+    ?><!--Mostra o tabuleiro e valida o fim do jogo-->
 
     <form class="reset" method="post" action="Reset.php">
         <label>
