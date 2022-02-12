@@ -63,3 +63,12 @@ h1{
 .o{
     color: midnightblue;
 }
+
+.linha_horizontal {
+    border: 0;
+    height: 4px;
+    width: 246px;
+    margin-top: -1px;
+    margin-bottom: -48px;
+    background-image: linear-gradient(to right, transparent, #000000, transparent);
+}

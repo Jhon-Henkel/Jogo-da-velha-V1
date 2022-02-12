@@ -27,9 +27,9 @@
         function tabuleiro (): void {
             echo "<h1>";
             echo $_SESSION['j'][0][0] . " | " . $_SESSION['j'][0][1] . " | " . $_SESSION['j'][0][2];
-            echo "<br>-----------</br>";
+            echo "<br><hr class='linha_horizontal'></br>";
             echo $_SESSION['j'][1][0] . " | " . $_SESSION['j'][1][1] . " | " . $_SESSION['j'][1][2];
-            echo "<br>-----------</br>";
+            echo "<br><hr class='linha_horizontal'></br>";
             echo $_SESSION['j'][2][0] . " | " . $_SESSION['j'][2][1] . " | " . $_SESSION['j'][2][2];
             echo "</h1>";
         }//função para exibir o tabuleiro com as posições.
