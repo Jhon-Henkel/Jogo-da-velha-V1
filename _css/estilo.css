@@ -55,3 +55,11 @@ h1{
 .reset{
     text-align: end;
 }
+
+.x{
+    color: darkred;
+}
+
+.o{
+    color: midnightblue;
+}
