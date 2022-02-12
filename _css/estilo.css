@@ -64,11 +64,37 @@ h1{
     color: midnightblue;
 }
 
-.linha_horizontal {
+.linha_horizontal_1 {
     border: 0;
     height: 4px;
-    width: 246px;
-    margin-top: -1px;
-    margin-bottom: -48px;
-    background-image: linear-gradient(to right, transparent, #000000, transparent);
+    width: 244px;
+    margin-top: 5px;
+    margin-bottom: -76px;
+}
+
+.linha_horizontal_2 {
+    border: 0;
+    height: 4px;
+    width: 244px;
+    margin-top: -52px;
+    margin-bottom: -76px;
+}
+
+.linha_horizontal_3 {
+    border: 0;
+    height: 4px;
+    width: 244px;
+    margin-top: -52px;
+    margin-bottom: -76px;
+}
+
+.transparente{
+    color: transparent;
+}
+
+.background_grade{
+    background-image: url("_image/grade.png");
+    height: 216px;
+    width: 234px;
+    margin-left: 166px;
 }
