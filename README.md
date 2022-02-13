@@ -3,4 +3,6 @@ Jogo da velha em php V-1
 
 Feito em PHP com possibilidade de jogar em 1 ou 2 jogadores, essa é a versão V1, o imput da jogada ainda é por meio de texto, em uma versão V2 vou colocr por botão.
 
+No modo single player tem escolha de dificuldade e uma IA para essa dificuldade que joga de acordo com a dificuldade escolhida, sendo elas burra, leve e pesada.
+
 Iniciar pelo arquivo home.php
