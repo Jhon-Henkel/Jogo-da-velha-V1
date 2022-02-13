@@ -26,6 +26,7 @@ function fim_jogo (): void {
         || ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][2][2] == '<span class="x">X</span>')
         || ($_SESSION['j'][2][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == '<span class="x">X</span>')) {
         $_SESSION['x/o'] = 3;
+        $_SESSION['ia'] = 3;
         echo "<h2 class='center'>Parabéns jogador de '<span class='x'>X</span>'</br>" . "Você ganhou!!!</h2>";
 
     } elseif (($_SESSION['j'][0][0] == '<span class="o">O</span>' && $_SESSION['j'][0][1] == '<span class="o">O</span>' && $_SESSION['j'][0][2] == '<span class="o">O</span>')
@@ -37,20 +38,18 @@ function fim_jogo (): void {
         || ($_SESSION['j'][0][0] == '<span class="o">O</span>' && $_SESSION['j'][1][1] == '<span class="o">O</span>' && $_SESSION['j'][2][2] == '<span class="o">O</span>')
         || ($_SESSION['j'][2][0] == '<span class="o">O</span>' && $_SESSION['j'][1][1] == '<span class="o">O</span>' && $_SESSION['j'][0][2] == '<span class="o">O</span>')) {
         $_SESSION['x/o'] = 3;
+        $_SESSION['ia'] = 3;
         echo "<h2 class='center'>Parabéns jogador de '<span class='o'>O</span>'</br>" . "Você ganhou!!!</h2>";
 
     }elseif ($_SESSION['deu_velha'] == 9) {
         $_SESSION['x/o'] = 3;
+        $_SESSION['ia'] = 3;
         echo "<h2 class='center'>Deu Velha</br>" . "<span class='dificuldade'>Ninguém ganhou!!!</span></h2>";
     }
 }//faz a validação de fim de partida.
 
 function jogada_invalida (): void {
-    echo "
-               <script>
-                  alert('Jogada inválida, o lugar que você escolheu está ocupada!!!');
-               </script>
-            ";
+    echo '<script type="text/javascript">alert("Jogada inválida, o lugar que você escolheu está ocupada!!!");</script>';
     $_SESSION['ia'] = 3;
 }//javascript de jogada inválida.
 
@@ -77,6 +76,17 @@ function formulario (): void {
 }
 
 function jogada_ia (): void {
+    if (($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == '<span class="x">X</span>')
+        || ($_SESSION['j'][1][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][1][2] == '<span class="x">X</span>')
+        || ($_SESSION['j'][2][0] == '<span class="x">X</span>' && $_SESSION['j'][2][1] == '<span class="x">X</span>' && $_SESSION['j'][2][2] == '<span class="x">X</span>')
+        || ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][1][0] == '<span class="x">X</span>' && $_SESSION['j'][2][0] == '<span class="x">X</span>')
+        || ($_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][2][1] == '<span class="x">X</span>')
+        || ($_SESSION['j'][0][2] == '<span class="x">X</span>' && $_SESSION['j'][1][2] == '<span class="x">X</span>' && $_SESSION['j'][2][2] == '<span class="x">X</span>')
+        || ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][2][2] == '<span class="x">X</span>')
+        || ($_SESSION['j'][2][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == '<span class="x">X</span>')) {
+        $_SESSION['ia'] = 3;
+    }
+
     if ($_SESSION['dif'] == 1) {
         while ($_SESSION['ia'] == 1) {
             $r = rand(1, 9);
@@ -139,7 +149,7 @@ function jogada_ia (): void {
         }
     }//final da dificuldade 1 (Burra).
 
-    if ($_SESSION['dif'] == 2) {
+    if ($_SESSION['dif'] == 2 && $_SESSION['ia'] == 1) {
         bloqueia_x();
         if ($_SESSION['ia'] == 1) {
             $r = rand(1, 2);
@@ -192,7 +202,7 @@ function jogada_ia (): void {
         }
     }//final da dificuldade 2 (Leve).
 
-    if ($_SESSION['dif'] == 3) {
+    if ($_SESSION['dif'] == 3 && $_SESSION['ia'] == 1) {
         ataque_o();
         bloqueia_x();
         if ($_SESSION['ia'] == 1) {
@@ -247,7 +257,33 @@ function jogada_ia (): void {
 }//jogadas de 'O'.
 
 function bloqueia_x (): void {
-    if ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == 3) {
+    if ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5 || $_SESSION['j'][0][2] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5 ||
+        $_SESSION['j'][2][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5 || $_SESSION['j'][2][2] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5) {
+        $_SESSION['j'][1][1] = '<span class="o">O</span>';
+        $_SESSION['deu_velha']++;
+        $_SESSION['x/o'] = 1;
+        $_SESSION['ia'] = 3;
+    }elseif ($_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][1][2] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5) {
+        $_SESSION['j'][1][1] = '<span class="o">O</span>';
+        $_SESSION['deu_velha']++;
+        $_SESSION['x/o'] = 1;
+        $_SESSION['ia'] = 3;
+    }elseif ($_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][1][0] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5) {
+        $_SESSION['j'][1][1] = '<span class="o">O</span>';
+        $_SESSION['deu_velha']++;
+        $_SESSION['x/o'] = 1;
+        $_SESSION['ia'] = 3;
+    }elseif ($_SESSION['j'][1][0] == '<span class="x">X</span>' && $_SESSION['j'][2][1] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5) {
+        $_SESSION['j'][1][1] = '<span class="o">O</span>';
+        $_SESSION['deu_velha']++;
+        $_SESSION['x/o'] = 1;
+        $_SESSION['ia'] = 3;
+    }elseif ($_SESSION['j'][1][2] == '<span class="x">X</span>' && $_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][1][1] == 5) {
+        $_SESSION['j'][1][1] = '<span class="o">O</span>';
+        $_SESSION['deu_velha']++;
+        $_SESSION['x/o'] = 1;
+        $_SESSION['ia'] = 3;
+    }elseif ($_SESSION['j'][0][0] == '<span class="x">X</span>' && $_SESSION['j'][0][1] == '<span class="x">X</span>' && $_SESSION['j'][0][2] == 3) {
         $_SESSION['j'][0][2] = '<span class="o">O</span>';
         $_SESSION['deu_velha']++;
         $_SESSION['x/o'] = 1;
