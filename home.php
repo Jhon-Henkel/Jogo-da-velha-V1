@@ -11,7 +11,8 @@
 <div>
     <h1>Jogo da velha</h1>
     <form class="center" method="post" action="main.php">
-        <br>
+        </br>
+        <label>
             <input type="radio" name="player" value="1" checked> Single Player
             <input type="radio" name="player" value="2"> Two Player's </br></br>
             <br><b>Dificuldade da IA no single player: </b></br></br>
