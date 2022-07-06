@@ -1,4 +1,5 @@
-# Jogo-da-velha-V1
+# Jogo da velha Versão 1
+
 Jogo da velha em php Versão 1
 
 Feito em PHP com possibilidade de jogar em 1 ou 2 jogadores, essa é a primeira versão em PHP, o input da jogada ainda é por meio de texto, em uma versão V2 vou colocar por botão.
